@@ -40,11 +40,27 @@ namespace v0910
         {
             for (int i = 0; i < 3; i++)
             {
+                //timer1.Enabled = false;
+
                 labels[i].Left += vx[i];
                 labels[i].Top += vy[i];
 
-                labels[i].Left = rand.Next(ClientSize.Width - labels[i].Width);
-                labels[i].Top = rand.Next(ClientSize.Height - labels[i].Height);
+                if (labels[i].Left < 0)
+                {
+                    vx[i] = Math.Abs(vx[i]);
+                }
+                if (labels[i].Top< 0)
+                {
+                    vy[i] = Math.Abs(vy[i]);
+                }
+                if (labels[i].Right > ClientSize.Width)
+                {
+                    vx[i] = -Math.Abs(vx[i]);
+                }
+                if (labels[i].Bottom > ClientSize.Height)
+                {
+                    vy[i] = -Math.Abs(vy[i]);
+                }
             }
            
         }
